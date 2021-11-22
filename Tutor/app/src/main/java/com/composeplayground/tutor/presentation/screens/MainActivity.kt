@@ -1,4 +1,4 @@
-package com.composeplayground.tutor
+package com.composeplayground.tutor.presentation.screens
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,7 +8,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.composeplayground.tutor.ui.theme.TutorTheme
+import com.composeplayground.tutor.presentation.theme.TutorTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
