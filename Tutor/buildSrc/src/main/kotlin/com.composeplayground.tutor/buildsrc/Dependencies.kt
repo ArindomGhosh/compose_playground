@@ -1,12 +1,15 @@
 package com.composeplayground.tutor.buildsrc
 
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.kotlin.dsl.ScriptHandlerScope
 
 object Dependencies {
     //project-level
     object Plugins {
         const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
         const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+        const val navigationPlugin =
+            "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navVersion}"
     }
 
     object AndroidUi {
@@ -15,6 +18,10 @@ object Dependencies {
         const val androidCoreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
         const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
         const val lifeCycle = "androidx.lifecycle:lifecycle-runtime:${Versions.lifecycleKtx}"
+        const val navigationFragment =
+            "androidx.navigation:navigation-fragment-ktx:${Versions.navVersion}"
+        const val navigationKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navVersion}"
+
 
         //compose
         const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
@@ -47,6 +54,8 @@ object Dependencies {
         AndroidUi.composeMaterial,
         AndroidUi.composeUiToolPreview,
         AndroidUi.composeActivity,
+        AndroidUi.navigationFragment,
+        AndroidUi.navigationKtx
     )
 
     val androidTestLibs = listOf(
@@ -63,34 +72,35 @@ object Dependencies {
         DebugImplementation.composeUiTooling
     )
 
+    val kaptProcessors= listOf<String>()
 }
 
-fun DependencyHandler.addKapt(list: List<String>) {
-    list.forEach { dependency ->
+fun DependencyHandler.addKapt() {
+    Dependencies.kaptProcessors.forEach { dependency ->
         add("kapt", dependency)
     }
 }
 
-fun DependencyHandler.addImplementation(list: List<String>) {
-    list.forEach { dependency ->
+fun DependencyHandler.addImplementation() {
+    Dependencies.appLibs.forEach { dependency ->
         add("implementation", dependency)
     }
 }
 
-fun DependencyHandler.addTestImplementation(list: List<String>) {
-    list.forEach { dependency ->
+fun DependencyHandler.addTestImplementation() {
+    Dependencies.testLibs.forEach { dependency ->
         add("testImplementation", dependency)
     }
 }
 
-fun DependencyHandler.addAndroidTestImplementation(list: List<String>) {
-    list.forEach { dependency ->
+fun DependencyHandler.addAndroidTestImplementation() {
+    Dependencies.androidTestLibs.forEach { dependency ->
         add("androidTestImplementation", dependency)
     }
 }
 
-fun DependencyHandler.addDebugImplementation(list: List<String>) {
-    list.forEach { dependency ->
+fun DependencyHandler.addDebugImplementation() {
+    Dependencies.debugLibs.forEach { dependency ->
         add("debugImplementation", dependency)
     }
 }

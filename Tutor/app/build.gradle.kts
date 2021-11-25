@@ -1,8 +1,9 @@
 import com.composeplayground.tutor.buildsrc.*
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
+//    id(Dependencies.Plugins.applicationPlugin)
+    id("application-convention")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -51,8 +52,8 @@ android {
 }
 
 dependencies {
-    addImplementation(Dependencies.appLibs)
-    addTestImplementation(Dependencies.testLibs)
-    addAndroidTestImplementation(Dependencies.androidTestLibs)
-    addDebugImplementation(Dependencies.debugLibs)
+    addImplementation()
+    addTestImplementation()
+    addAndroidTestImplementation()
+    addDebugImplementation()
 }

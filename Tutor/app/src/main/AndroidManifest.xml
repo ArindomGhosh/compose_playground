@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tutor">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.screens.TutorActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Tutor.NoActionBar">

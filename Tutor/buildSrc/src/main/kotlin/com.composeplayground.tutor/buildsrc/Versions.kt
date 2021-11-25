@@ -12,6 +12,7 @@ object Versions {
     const val lifecycleKtx = "2.4.0"
     const val appCompat = "1.3.1"
     const val activityCompose = "1.3.0-alpha06"
+    const val navVersion = "2.3.5"
 
     //test
     const val junit = "4.+"
