@@ -8,7 +8,7 @@ buildscript {
         classpath(com.composeplayground.tutor.buildsrc.Dependencies.Plugins.gradle)
         classpath(com.composeplayground.tutor.buildsrc.Dependencies.Plugins.kotlinGradle)
         classpath(com.composeplayground.tutor.buildsrc.Dependencies.Plugins.navigationPlugin)
-
+        classpath(com.composeplayground.tutor.buildsrc.Dependencies.Plugins.hiltPlugin)
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

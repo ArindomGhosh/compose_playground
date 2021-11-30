@@ -10,6 +10,8 @@ object Dependencies {
         const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         const val navigationPlugin =
             "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navVersion}"
+        const val hiltPlugin =
+            "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltVersion}"
     }
 
     object AndroidUi {
@@ -35,14 +37,19 @@ object Dependencies {
         //test
         const val junit = "junit:junit:${Versions.junit}"
         const val androidxJunit = "androidx.test.ext:junit:${Versions.androidJUnitTest}"
-        const val esspresso = "androidx.test.espresso:espresso-core:${Versions.esspresso}"
+        const val espresso = "androidx.test.espresso:espresso-core:${Versions.esspresso}"
         const val composeJunit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
-
     }
 
     object DebugImplementation {
         //debugImplementation
         const val composeUiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
+    }
+
+    object DI {
+        const val hiltDependency = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
+        const val hiltKaptCompiler =
+            "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"
     }
 
     val appLibs = listOf(
@@ -55,12 +62,13 @@ object Dependencies {
         AndroidUi.composeUiToolPreview,
         AndroidUi.composeActivity,
         AndroidUi.navigationFragment,
-        AndroidUi.navigationKtx
+        AndroidUi.navigationKtx,
+        DI.hiltDependency
     )
 
     val androidTestLibs = listOf(
         Test.androidxJunit,
-        Test.esspresso,
+        Test.espresso,
         Test.composeJunit
     )
 
@@ -72,7 +80,9 @@ object Dependencies {
         DebugImplementation.composeUiTooling
     )
 
-    val kaptProcessors= listOf<String>()
+    val kaptProcessors = listOf(
+        DI.hiltKaptCompiler
+    )
 }
 
 fun DependencyHandler.addKapt() {

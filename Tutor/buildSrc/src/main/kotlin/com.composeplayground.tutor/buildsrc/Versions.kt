@@ -3,6 +3,7 @@ package com.composeplayground.tutor.buildsrc
 object Versions {
     //app level
     const val gradle = "7.0.3"
+    const val hiltVersion = "2.38.1"
     const val kotlin = "1.5.21"
 
     //libs

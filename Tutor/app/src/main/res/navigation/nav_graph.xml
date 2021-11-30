@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/coursesScreen"
-        android:name="com.composeplayground.tutor.presentation.screens.courses.CoursesScreen"
+        android:name="com.composeplayground.tutor.presentation.screens.courses.CoursesFragment"
         android:label="CoursesScreen"
         />
 </navigation>

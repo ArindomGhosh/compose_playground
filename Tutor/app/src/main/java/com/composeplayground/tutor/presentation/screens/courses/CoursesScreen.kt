@@ -1,46 +1,38 @@
 package com.composeplayground.tutor.presentation.screens.courses
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Scaffold
+import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.fragment.app.Fragment
-import com.composeplayground.tutor.presentation.theme.TutorTheme
+import androidx.compose.ui.Modifier
+import com.composeplayground.tutor.domain.entities.CourseEntity
+import com.composeplayground.tutor.foundation.ValueChange
+import com.composeplayground.tutor.presentation.screens.courses.courseBloc.CourseListState
 
-class CoursesScreen : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return ComposeView(requireContext())
-            .apply {
-                setContent {
-                    TutorTheme {
-                        // A surface container using the 'background' color from the theme
-                        Surface(color = MaterialTheme.colors.background) {
-                            Greeting("Android")
-                        }
-                    }
-                }
+@Composable
+fun CoursesScreen(
+    modifier: Modifier = Modifier,
+    scaffoldState: ScaffoldState,
+    courseListState: CourseListState,
+    onCourseSelected: ValueChange<CourseEntity>,
+    contentHandler: @Composable () -> Unit
+) {
+    Scaffold(
+        modifier = modifier,
+        scaffoldState = scaffoldState,
+        snackbarHost = {
+            scaffoldState.snackbarHostState
+        },
+    ) {
+        Box(modifier = Modifier.padding(it)) {
+            with(courseListState) {
+                // todo if (isLoading) show loader
+                // todo if(uiError)  show ErrorDialog
+                // todo if(data) show courseList
+                contentHandler()
             }
-    }
-}
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    TutorTheme {
-        Greeting("Android")
+        }
     }
 }
