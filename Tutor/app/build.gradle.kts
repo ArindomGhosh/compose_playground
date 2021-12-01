@@ -1,7 +1,6 @@
 import com.composeplayground.tutor.buildsrc.*
 
 plugins {
-//    id(Dependencies.Plugins.applicationPlugin)
     id("application-convention")
     id("androidx.navigation.safeargs.kotlin")
 }

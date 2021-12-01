@@ -1,7 +1,6 @@
 package com.composeplayground.tutor.buildsrc
 
 import org.gradle.api.artifacts.dsl.DependencyHandler
-import org.gradle.kotlin.dsl.ScriptHandlerScope
 
 object Dependencies {
     //project-level
@@ -19,7 +18,6 @@ object Dependencies {
         const val material = "com.google.android.material:material:${Versions.material}"
         const val androidCoreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
         const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
-        const val lifeCycle = "androidx.lifecycle:lifecycle-runtime:${Versions.lifecycleKtx}"
         const val navigationFragment =
             "androidx.navigation:navigation-fragment-ktx:${Versions.navVersion}"
         const val navigationKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navVersion}"
@@ -31,6 +29,19 @@ object Dependencies {
         const val composeUiToolPreview =
             "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
         const val composeActivity = "androidx.activity:activity-compose:${Versions.activityCompose}"
+    }
+
+    object AndroidLifeCycle {
+        const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+        const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+        const val viewmodelCompose =
+            "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycle}"
+        const val viewmodelSavedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.lifecycle}"
+        const val liveDateKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+
+        //Annotation processor
+        const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+        const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
     }
 
     object Test {
@@ -56,7 +67,7 @@ object Dependencies {
         AndroidUi.material,
         AndroidUi.androidCoreKtx,
         AndroidUi.appCompat,
-        AndroidUi.lifeCycle,
+        AndroidLifeCycle.runtimeKtx,
         AndroidUi.composeUi,
         AndroidUi.composeMaterial,
         AndroidUi.composeUiToolPreview,
