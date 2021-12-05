@@ -1,6 +1,8 @@
 package com.composeplayground.tutor.buildsrc
 
 object Versions {
+    const val coroutine: String = "1.5.0"
+
     //app level
     const val gradle = "7.0.3"
     const val hiltVersion = "2.38.1"

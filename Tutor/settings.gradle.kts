@@ -7,3 +7,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Tutor"
 include (":app")
+include(":mvi-core")

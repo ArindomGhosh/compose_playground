@@ -1,3 +1,5 @@
 package com.composeplayground.tutor.presentation
 
-interface TutorEvents
+import com.composeplayground.mvi_core.Wish
+
+interface TutorEvents: Wish

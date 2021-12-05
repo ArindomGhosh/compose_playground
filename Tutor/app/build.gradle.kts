@@ -2,6 +2,7 @@ import com.composeplayground.tutor.buildsrc.*
 
 plugins {
     id("application-convention")
+    id("android-ui-common")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -55,9 +56,5 @@ kapt {
 }
 
 dependencies {
-    addImplementation()
-    addTestImplementation()
-    addAndroidTestImplementation()
-    addDebugImplementation()
-    addKapt()
+    implementation(project(":mvi-core"))
 }

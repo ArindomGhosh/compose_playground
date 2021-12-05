@@ -44,6 +44,10 @@ object Dependencies {
         const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
     }
 
+    object Kotlin{
+        const val kotlinCoroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
+    }
+
     object Test {
         //test
         const val junit = "junit:junit:${Versions.junit}"
@@ -102,7 +106,7 @@ fun DependencyHandler.addKapt() {
     }
 }
 
-fun DependencyHandler.addImplementation() {
+fun DependencyHandler.addAndroidImplementation() {
     Dependencies.appLibs.forEach { dependency ->
         add("implementation", dependency)
     }
