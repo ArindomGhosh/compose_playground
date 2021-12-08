@@ -3,8 +3,6 @@ package com.composeplayground.mvi_core
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.composeplayground.mvi_core.util.DiffStrategy
-import com.composeplayground.mvi_core.util.byValue
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -23,12 +21,8 @@ abstract class FeatureBloc<WishType : Wish, UiStateType : UiState>(initialUiStat
     abstract override fun postWish(wish: WishType)
     protected fun postUiState(
         newUiState: UiStateType,
-        diffStrategy: DiffStrategy<UiStateType> = byValue()
     ) {
-        if (!diffStrategy(previousState, _uiState.value)) {
-            previousState = if (!diffStrategy(previousState, _uiState.value)) _uiState.value else previousState
-            _uiState.value = newUiState
-        }
+        previousState = _uiState.getAndUpdate { newUiState } // update new state and return prior state
     }
 
     protected fun <T> startCollectingFlow(flow: Flow<T>, block: suspend (T) -> Unit) {

@@ -13,16 +13,18 @@ object Dependencies {
             "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltVersion}"
     }
 
-    object AndroidUi {
+    object AndroidCore {
         //android-ui
         const val material = "com.google.android.material:material:${Versions.material}"
+        const val materialIcon = "com.google.android.material:material-icon:${Versions.material}"
         const val androidCoreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
         const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
         const val navigationFragment =
             "androidx.navigation:navigation-fragment-ktx:${Versions.navVersion}"
         const val navigationKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navVersion}"
+    }
 
-
+    object JetPackCompose{
         //compose
         const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
         const val composeMaterial = "androidx.compose.material:material:${Versions.compose}"
@@ -68,16 +70,16 @@ object Dependencies {
     }
 
     val appLibs = listOf(
-        AndroidUi.material,
-        AndroidUi.androidCoreKtx,
-        AndroidUi.appCompat,
+        AndroidCore.material,
+        AndroidCore.androidCoreKtx,
+        AndroidCore.appCompat,
         AndroidLifeCycle.runtimeKtx,
-        AndroidUi.composeUi,
-        AndroidUi.composeMaterial,
-        AndroidUi.composeUiToolPreview,
-        AndroidUi.composeActivity,
-        AndroidUi.navigationFragment,
-        AndroidUi.navigationKtx,
+        AndroidCore.navigationFragment,
+        AndroidCore.navigationKtx,
+        JetPackCompose.composeMaterial,
+        JetPackCompose.composeUi,
+        JetPackCompose.composeUiToolPreview,
+        JetPackCompose.composeActivity,
         DI.hiltDependency
     )
 
