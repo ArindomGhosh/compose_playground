@@ -1,6 +1,6 @@
 package com.composeplayground.tutor.domain.mappers
 
-interface DomainMapper<SourceModel, DomainModel> {
+interface IDomainMapper<SourceModel, DomainModel> {
 
     fun mapToDomainModel(sourceModel: SourceModel):DomainModel
 
