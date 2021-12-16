@@ -28,9 +28,11 @@ object Dependencies {
         //compose
         const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
         const val composeMaterial = "androidx.compose.material:material:${Versions.compose}"
+        // It provides viewModel() composable and LocalViewModelStoreOwner.
         const val composeUiToolPreview =
             "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
         const val composeActivity = "androidx.activity:activity-compose:${Versions.activityCompose}"
+        const val composeLifeCycle ="androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycle}"
     }
 
     object AndroidLifeCycle {
@@ -80,6 +82,7 @@ object Dependencies {
         JetPackCompose.composeUi,
         JetPackCompose.composeUiToolPreview,
         JetPackCompose.composeActivity,
+        JetPackCompose.composeLifeCycle,
         DI.hiltDependency
     )
 

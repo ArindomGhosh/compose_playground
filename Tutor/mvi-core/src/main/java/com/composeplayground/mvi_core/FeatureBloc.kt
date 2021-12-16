@@ -26,12 +26,12 @@ abstract class FeatureBloc<WishType : Wish, UiStateType : UiState>(initialUiStat
     }
 
     protected fun <T> startCollectingFlow(flow: Flow<T>, block: suspend (T) -> Unit) {
-        executeTask {
+        executeAsyncTask {
             flow.collect(block)
         }
     }
 
-    private fun executeTask(block: suspend () -> Unit) {
+    protected fun executeAsyncTask(block: suspend () -> Unit) {
         viewModelScope.launch {
             kotlin.runCatching {
                 block()

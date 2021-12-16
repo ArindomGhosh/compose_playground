@@ -3,6 +3,7 @@ package com.composeplayground.tutor.presentation.screens.courses
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -11,15 +12,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.composeplayground.tutor.domain.entities.CourseEntity
 import com.composeplayground.tutor.domain.entities.Facilitator
 import com.composeplayground.tutor.foundation.ValueChange
+import com.composeplayground.tutor.presentation.screens.courses.courseBloc.CourseFeature
 import com.composeplayground.tutor.presentation.screens.courses.courseBloc.CourseListState
 import com.composeplayground.tutor.presentation.theme.TutorTheme
+
+/**
+ * SaveableStateProvider: https://developer.android.com/reference/kotlin/androidx
+ * /compose/runtime/saveable/SaveableStateHolder#SaveableStateProvider(kotlin.Any,kotlin.Function0)
+ * **/
 
 @Composable
 fun CourseScreen(
@@ -59,17 +67,10 @@ fun Courses(
     onCourseSelected: ValueChange<CourseEntity>,
 ) {
     LazyColumn(modifier = modifier) {
-        items(10) {
+        items(courseListState.data) { courseEntity ->
             CourseTile(
-                courseEntity = CourseEntity(
-                    courseId = 123,
-                    courseName = "Compose",
-                    courseRating = 5,
-                    facilitator = Facilitator(
-                        id = 615484,
-                        name = "Arindom Ghosh"
-                    )
-                ), onCourseClick = onCourseSelected
+                courseEntity = courseEntity,
+                onCourseClick = onCourseSelected
             )
         }
     }
