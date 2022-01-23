@@ -3,8 +3,11 @@ package com.composeplayground.mvi_core
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 interface IFeatureBloc<WishType : Wish, UiStateType : UiState> {
     val uiState: StateFlow<UiStateType>
@@ -22,7 +25,8 @@ abstract class FeatureBloc<WishType : Wish, UiStateType : UiState>(initialUiStat
     protected fun postUiState(
         newUiState: UiStateType,
     ) {
-        previousState = _uiState.getAndUpdate { newUiState } // update new state and return prior state
+        previousState =
+            _uiState.getAndUpdate { newUiState } // update new state and return prior state
     }
 
     protected fun <T> startCollectingFlow(flow: Flow<T>, block: suspend (T) -> Unit) {
@@ -31,8 +35,11 @@ abstract class FeatureBloc<WishType : Wish, UiStateType : UiState>(initialUiStat
         }
     }
 
-    protected fun executeAsyncTask(block: suspend () -> Unit) {
-        viewModelScope.launch {
+    protected fun executeAsyncTask(
+        handler: CoroutineContext = EmptyCoroutineContext,
+        block: suspend () -> Unit
+    ) {
+        viewModelScope.launch(handler) {
             kotlin.runCatching {
                 block()
             }.onFailure {

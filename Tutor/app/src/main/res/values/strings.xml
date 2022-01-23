@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Tutor</string>
+    <string name="course_loading_message">Please wait!! while we are loading courses..</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="confirm">Confirm</string>
+    <string name="loading_details">Please wait while Course Details being loaded..</string>
+    <string name="next_lesson">Next Lesson</string>
+    <string name="previous_lesson">Previous Lesson</string>
 </resources>

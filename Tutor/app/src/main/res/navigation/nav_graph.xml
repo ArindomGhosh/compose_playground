@@ -8,5 +8,18 @@
         android:id="@+id/coursesScreen"
         android:name="com.composeplayground.tutor.presentation.screens.courses.CoursesFragment"
         android:label="CoursesScreen"
-        />
+        >
+        <action
+            android:id="@+id/action_coursesScreen_to_courseDetailsFragment"
+            app:destination="@id/courseDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/courseDetailsFragment"
+        android:name="com.composeplayground.tutor.presentation.screens.courseDetails.CourseDetailsFragment"
+        android:label="CourseDetailsFragment" >
+        <argument
+            android:name="courseId"
+            app:argType="long"
+            android:defaultValue="0L" />
+    </fragment>
 </navigation>

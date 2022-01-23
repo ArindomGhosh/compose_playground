@@ -8,11 +8,14 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import com.composeplayground.tutor.presentation.TutorBaseFragment
 import com.composeplayground.tutor.presentation.screens.courses.courseBloc.CourseFeature
 import com.composeplayground.tutor.presentation.screens.courses.courseBloc.CourseListEvent
 import com.composeplayground.tutor.presentation.theme.TutorTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CoursesFragment : TutorBaseFragment() {
@@ -23,18 +26,24 @@ class CoursesFragment : TutorBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        viewModel.postWish(CourseListEvent.LoadCourse)
         return ComposeView(requireContext())
             .apply {
                 setContent {
-                    val scaffoldState = rememberScaffoldState()
-                    viewModel.postWish(CourseListEvent.LoadCourse)
                     val courseListState by viewModel.uiState.collectAsState()
                     TutorTheme {
                         CourseScreen(
-                            scaffoldState = scaffoldState,
                             courseListState = courseListState,
+                            reload = {
+                                viewModel.postWish(CourseListEvent.LoadCourse)
+                            },
                             onCourseSelected = { courseEntity ->
-                                // todo navigate to Course detail Entity
+                                findNavController()
+                                    .navigate(
+                                        CoursesFragmentDirections.actionCoursesScreenToCourseDetailsFragment(
+                                            courseId = courseEntity.courseId
+                                        )
+                                    )
                             }
                         )
                     }
